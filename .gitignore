@@ -13,7 +13,6 @@ yarn-error.log
 /.idea
 .env.example
 .styleci.yml
-composer.json
 phpunit.xml
 package.json
 webpack.mix.js
