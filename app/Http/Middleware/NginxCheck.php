@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use App\Blacklist;
 use Closure;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class NginxCheck
@@ -20,14 +22,15 @@ class NginxCheck
         //获取访问信息
         $ip = $request->getClientIp();
         $blacklistmodel = new Blacklist();
-        if($blacklistmodel->where('ip',$ip)){
+        if($blacklistmodel->where('ip',$ip)->get()->toArray()){
             return response('Permission Denied', 403);
         }
 
-        $query = $request->url();
+        $query = $request->getQueryString();
         if($this->filter($query)){
             //ip加入黑名单
             $blacklistmodel->ip = $ip;
+            $blacklistmodel->create_at = time();
             $blacklistmodel->save();
             return response('Permission Denied', 403);
         }
@@ -36,9 +39,6 @@ class NginxCheck
 
     private function filter($query){
         $key_words = ['thinkphp','admin','TP','tp','public'];
-        if(Str::contains($query,$key_words)){
-            return true;
-        }
-        return false;
+        return Str::contains($query,$key_words);
     }
 }
