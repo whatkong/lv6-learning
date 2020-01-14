@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //add by whatkong
+        \Clockwork\Support\Laravel\ClockworkServiceProvider::class
+
     ],
 
     /*

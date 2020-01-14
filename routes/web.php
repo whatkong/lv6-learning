@@ -24,3 +24,7 @@ Route::prefix('user')->group(function () {
 
     Route::get('/list', 'UserController@list');
 });
+
+Route::get('/myArticles','UserController@myArticles');
+Route::get('/article','UserController@bt');
+
