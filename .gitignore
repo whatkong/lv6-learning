@@ -18,3 +18,4 @@ package.json
 webpack.mix.js
 .gitattributes
 .editorconfig
+test.php
