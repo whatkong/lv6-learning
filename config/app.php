@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //add by whatkong
-        \Clockwork\Support\Laravel\ClockworkServiceProvider::class
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class
 
     ],
 
